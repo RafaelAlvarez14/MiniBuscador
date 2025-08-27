@@ -1,49 +1,61 @@
-<h1>Mini Buscador de Películas</h1>
+<h1 class="titulo">🎬 Mini Buscador de Películas 🎬</h1>
 
-<div>
-    <input [(ngModel)]="query" placeholder="Buscar película">
-    <input type="number" [(ngModel)]="year" placeholder="Año">
+<div class="buscador">
+    <input [(ngModel)]="query" placeholder="🔍 Buscar película" />
+    <input type="number" [(ngModel)]="year" placeholder="📅 Año" />
     <select [(ngModel)]="language">
-    <option value="es">Español</option>
-    <option value="en">Inglés</option>
-    <option value="ja">Japonés</option>
-    <option value="pt">Portugués</option>
-    <option value="fr">Francés</option>
+        <option value="es">Español</option>
+        <option value="en">Inglés</option>
+        <option value="ja">Japonés</option>
+        <option value="pt">Portugués</option>
+        <option value="fr">Francés</option>
     </select>
     <button (click)="buscar()">Buscar</button>
 </div>
 
-<ul>
+<div class="grid-peliculas">
     @for (peli of peliculas; track peli.id) {
-    <li>
-        @if (peli.poster_path) {
-        <img style="cursor:pointer;" [src]="getPosterUrl(peli.poster_path)" alt="{{peli.title}} poster" (click)="abrirDetalles(peli)" />
-        } @else {
-        <span (click)="abrirDetalles(peli)">🎬 No hay poster disponible</span>
-        }
-        <strong>{{ peli.title }}</strong> ({{ peli.release_date }})<br>
-        {{ peli.overview }}
-    </li>
+        <div class="card" (click)="abrirDetalles(peli)">
+            @if (peli.poster_path) {
+                <img [src]="getPosterUrl(peli.poster_path)" alt="{{peli.title}} poster" />
+            } @else {
+                <div class="sin-poster">🎬</div>
+            }
+            <div class="info">
+                <h3>{{ peli.title }}</h3>
+                <p>{{ peli.release_date }}</p>
+            </div>
+        </div>
     }
-</ul>
-
-<div>
-    <button (click)="anterior()" [disabled]="pagina === 1">Anterior</button>
-    <button (click)="siguiente()">Siguiente</button>
 </div>
 
-<!-- Modal de detalles -->
+<div class="paginacion">
+    <button (click)="anterior()" [disabled]="pagina === 1">⬅ Anterior</button>
+    <button (click)="siguiente()">Siguiente ➡</button>
+</div>
+
+<!-- modal de detalles -->
 @if (peliculaSeleccionada) {
     <div class="modal-overlay" (click)="cerrarModal()">
-    <div class="modal-content" (click)="$event.stopPropagation()">
-        <h2>{{ peliculaSeleccionada.title }}</h2>
-        @if (peliculaSeleccionada.poster_path) {
-        <img [src]="getPosterUrl(peliculaSeleccionada.poster_path)" alt="{{peliculaSeleccionada.title}}" />
-        }
-        <p><strong>Fecha de estreno:</strong> {{ peliculaSeleccionada.release_date }}</p>
-        <p><strong>Idioma:</strong> {{ peliculaSeleccionada.original_language }}</p>
-        <p>{{ peliculaSeleccionada.overview }}</p>
-        <button (click)="cerrarModal()">Cerrar</button>
-    </div>
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-body">
+                @if (peliculaSeleccionada.poster_path) {
+                    <div class="poster">
+                        <img [src]="getPosterUrl(peliculaSeleccionada.poster_path)" alt="{{peliculaSeleccionada.title}}" />
+                    </div>
+                }
+                <div class="detalles">
+                    <h2>{{ peliculaSeleccionada.title }}</h2>
+                    <p><strong>📅 Estreno:</strong> {{ peliculaSeleccionada.release_date }}</p>
+                    <p><strong>🌐 Idioma:</strong> {{ peliculaSeleccionada.original_language }}</p>
+                    <p>{{ peliculaSeleccionada.overview }}</p>
+                    <button class="cerrar" (click)="cerrarModal()">Cerrar ✖</button>
+                </div>
+            </div>
+        </div>
     </div>
 }
+
+<div class="identificador">
+    <p>Rafael David Alvarez González, Agosto 2025 ©</p>
+</div>

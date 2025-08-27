@@ -1,4 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } app/assets/fondo.jpg*/
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    url("app/assets/fondo.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}

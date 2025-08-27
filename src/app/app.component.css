@@ -1,26 +1,196 @@
-    .modal-overlay {
-      position: fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background: rgba(0,0,0,0.5);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .modal-content {
-      background:#fff;
-      padding:20px;
-      border-radius:8px;
-      max-width:500px;
-      width:90%;
-      max-height:90%;
-      overflow:auto;
-    }
-    .modal-content img {
-      width: 100%;
-      max-width:200px;
-      float:left;
-      margin-right:10px;
-    }
+/*titulo con estilo*/
+.titulo {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 20px 0;
+  color: #ffcc00;
+  text-shadow: 2px 2px 8px #000;
+}
+
+/*buscador*/
+.buscador {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.buscador input,
+.buscador select,
+.buscador button {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.buscador button {
+  background: #e50914;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.buscador button:hover {
+  background: #ff2a36;
+}
+
+/*grid de peliculas*/
+.grid-peliculas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.7);
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+}
+
+.sin-poster {
+  background: #333;
+  color: #bbb;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 270px;
+}
+
+.card .info {
+  padding: 10px;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #ffcc00;
+}
+
+/*paginacion*/
+.paginacion {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.paginacion button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  background: #444;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 20px;
+}
+
+.paginacion button:hover {
+  background: #666;
+}
+
+/*modal*/
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.modal-content {
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 100%;
+  animation: aparecer 0.3s ease;
+  color: #fff;
+}
+
+/*layout en dos columnas*/
+.modal-body {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/*poster a la izquierda*/
+.poster img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+/*texto a la derecha*/
+.detalles {
+  flex: 1;
+}
+
+.detalles h2 {
+  margin: 0 0 10px;
+  color: #ffcc00;
+}
+
+.detalles p {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.cerrar {
+  float: right;
+  margin-top: 15px;
+  background: #e50914;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.cerrar:hover {
+  background: #ff2a36;
+}
+
+/*animacion de aparicion*/
+@keyframes aparecer {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.identificador {
+  text-align: right;
+  background-color: black;
+  font-size: smaller;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.identificador p {
+  margin-right: 10px;
+}
